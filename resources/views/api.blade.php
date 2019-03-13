@@ -41,40 +41,42 @@
             background-color: black;
             color: white;
         }
+
+        img {
+            height: 30px;
+            width: 30px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Create | Read | Update | Delete</h1>
-    <h1><a href="/api">API GitHub</a></h1>
+    <h1>Find API</h1>
+    <h1><a href="/">CRUD</a></h1>
     <div class="form-group">
-        <form action="{{url('/')}}" method="POST">
+        <form action="{{url('/repos')}}" method="POST">
             <input type="hidden" name="_token" required value="<?php echo csrf_token(); ?>">
-            <input type="hidden" name="id" required id="id" value="<?php if(isset($user)) { echo $user['id'];}  ?>">
-            <input type="text" name="name" required id="name" value="<?php if(isset($user)) { echo $user['firstname'];}  ?>" placeholder="Digite seu nome">
-            <input type="email" name="email" required id="email" value="<?php if(isset($user)) { echo $user['email'];}  ?>" placeholder="Digite seu email">
-            <input type="number" name="age" required id="age" value="<?php if(isset($user)) { echo $user['age'];}  ?>" placeholder="Digite sua idade">
+            <input type="text" name="repos" id="repos" placeholder="Digite seu repositório">
 
             <button type="submit">Enviar</button>
         </form>
     </div>
-    @if(isset($users))
+    @if(isset($repos))
     <table align='center' border='1'>
         <tr>
-            <td>Nome</td>
-            <td>Email</td>
-            <td>Idade</td>
-            <td>Ações</td>
+            <td>Repositório</td>
+            <td>Imagem</td>
+            <td>Descrição</td>
+            <td>Acessar</td>
+            <td>Ação</td>
         </tr>
-        @foreach($users as $user)
+        @foreach($repos as $repo)
         <tr>
-            <td>{{$user['firstname']}}</td>
-            <td>{{$user['email']}}</td>
-            <td>{{$user['age']}}</td>
+            <td>{{$repo['name']}}</td>
+            <td><img src="{{$repo['avatar_url']}}" alt="avatar_url"></td>
+            <td>{{$repo['description']}}</td>
+            <td><a href="{{$repo['html_url']}}">{{$repo['html_url']}}</a></td>
             <td>
-                <a href="/delete/{{ $user['id'] }}">Deletar</a>
-                |
-                <a href="/update/{{ $user['id'] }}">Atualizar</a>
+                <a href="/delete_repos/{{ $repo['id'] }}">Deletar</a>
             </td>
         </tr>
         @endforeach
