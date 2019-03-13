@@ -49,13 +49,15 @@
     <div class="form-group">
         <form action="{{url('/')}}" method="POST">
             <input type="hidden" name="_token" required value="<?php echo csrf_token(); ?>">
-            <input type="text" name="name" required id="name" placeholder="Digite seu nome">
-            <input type="email" name="email" required id="email" placeholder="Digite seu email">
-            <input type="number" name="age" required id="age" placeholder="Digite sua idade">
+            <input type="hidden" name="id" required id="id" value="<?php if(isset($user)) { echo $user['id'];}  ?>">
+            <input type="text" name="name" required id="name" value="<?php if(isset($user)) { echo $user['firstname'];}  ?>" placeholder="Digite seu nome">
+            <input type="email" name="email" required id="email" value="<?php if(isset($user)) { echo $user['email'];}  ?>" placeholder="Digite seu email">
+            <input type="number" name="age" required id="age" value="<?php if(isset($user)) { echo $user['age'];}  ?>" placeholder="Digite sua idade">
 
             <button type="submit">Enviar</button>
         </form>
     </div>
+    @if(isset($users))
     <table align='center' border='1'>
         <tr>
             <td>Nome</td>
@@ -69,12 +71,14 @@
             <td>{{$user['email']}}</td>
             <td>{{$user['age']}}</td>
             <td>
-                <a href="/delete">Deletar</a> |
-                <a href="/update">Atualizar</a>
+                <a href="/delete/{{ $user['id'] }}">Deletar</a>
+                |
+                <a href="/update/{{ $user['id'] }}">Atualizar</a>
             </td>
         </tr>
         @endforeach
     </table>
+    @endif
     </div>
 </body>
 
