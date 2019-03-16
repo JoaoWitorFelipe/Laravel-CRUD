@@ -20,7 +20,7 @@
             align-items: center;
         }
 
-        .form-group input {
+        .form-group select {
             text-align: center;
             border: 1px solid black;
             border-radius: 15px;
@@ -41,44 +41,52 @@
             background-color: black;
             color: white;
         }
+
+        img {
+            height: 30px;
+            width: 30px;
+        }
     </style>
 </head>
 
 <body>
-    <h1>Create | Read | Update | Delete</h1>
-    <h1><a href="/api">API GitHub</a></h1>
-    <h1><a href="/relate">Relate User with Repos of API</a></h1>
+    <h1>Find API</h1>
+    <h1><a href="/">CRUD</a></h1>
     <div class="form-group">
-        <form action="{{url('/')}}" method="POST">
+        <form action="{{url('/relate')}}" method="POST">
             <input type="hidden" name="_token" required value="<?php echo csrf_token(); ?>">
-            <input type="hidden" name="id" required id="id" value="<?php if(isset($user)) { echo $user['id'];}  ?>">
-            <input type="text" name="name" required id="name" value="<?php if(isset($user)) { echo $user['firstname'];}  ?>" placeholder="Digite seu nome">
-            <input type="email" name="email" required id="email" value="<?php if(isset($user)) { echo $user['email'];}  ?>" placeholder="Digite seu email">
-            <input type="number" name="age" required id="age" value="<?php if(isset($user)) { echo $user['age'];}  ?>" placeholder="Digite sua idade">
+            <select name="id_user" id="id_user">
+                <option>Default</option>
+                @foreach($users as $user)
+                <option value="{{ $user['id'] }}">{{ $user['firstname'] }}</option>
+                @endforeach
+            </select>
+            <select name="id_repos" id="id_repos">
+                <option>Default</option>
+                @foreach($repos as $repo)
+                <option value="{{ $repo['id'] }}">{{ $repo['name'] }}</option>
+                @endforeach
+            </select>
 
             <button type="submit">Enviar</button>
         </form>
     </div>
-    @if(isset($users))
+    @if(isset($relates))
     <table align='center' border='1'>
         <tr>
-            <td>Nome</td>
-            <td>Email</td>
-            <td>Idade</td>
-            <td>Ações</td>
+            <td>Usuário</td>
+            <td>Repositório</td>
+            <td>Ação</td>
         </tr>
-        @foreach($users as $user)
+        @for ($i = 0; $i < sizeof($relates); $i++)
         <tr>
-            <td>{{$user['firstname']}}</td>
-            <td>{{$user['email']}}</td>
-            <td>{{$user['age']}}</td>
+            <td>{{ $relates[$i]->firstname }}</td>
+            <td>{{ $relates[$i]->name }}</td>
             <td>
-                <a href="/delete/{{ $user['id'] }}">Deletar</a>
-                |
-                <a href="/update/{{ $user['id'] }}">Atualizar</a>
+                <a href="/delete_relate/{{ $relates[$i]->id_user }}/{{ $relates[$i]->id_repos }}">Deletar</a>
             </td>
         </tr>
-        @endforeach
+        @endfor
     </table>
     @endif
     </div>
