@@ -8,10 +8,21 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
-        h1,
+        h1 {
+            text-align: center;
+            font-family: 'Impact';
+        }
+
         table {
             text-align: center;
             font-family: 'Arial';
+            border: 1px solid black;
+            border-radius: 15px;
+        }
+
+        table tr td {
+            border: 1px solid black;
+            padding: 15px;
         }
 
         .form-group {

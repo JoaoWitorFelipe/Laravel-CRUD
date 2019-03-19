@@ -10,7 +10,7 @@
     <style>
         h1 {
             text-align: center;
-            font-family: 'Arial';
+            font-family: 'Impact';
         }
         table {
             text-align: center;
@@ -62,7 +62,7 @@
     <h1><a href="/relate">Relate User with Repos of API</a></h1>
     <div class="form-group">
         <form action="{{url('/')}}" method="POST">
-            <input type="hidden" name="_token" required value="<?php echo csrf_token(); ?>">
+            <input type="hidden" name="_token" required value="<?= csrf_token(); ?>">
             <input type="hidden" name="id" required id="id" value="<?php if(isset($user)) { echo $user['id'];}  ?>">
             <input type="text" name="name" required id="name" value="<?php if(isset($user)) { echo $user['firstname'];}  ?>" placeholder="Digite seu nome">
             <input type="email" name="email" required id="email" value="<?php if(isset($user)) { echo $user['email'];}  ?>" placeholder="Digite seu email">
