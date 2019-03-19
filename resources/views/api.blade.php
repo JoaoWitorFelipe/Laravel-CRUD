@@ -5,6 +5,7 @@
     <title>Laravel</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
         h1,
@@ -16,7 +17,7 @@
         .form-group {
             display: flex;
             justify-content: center;
-            height: 300px;
+            height: 100px;
             align-items: center;
         }
 
@@ -60,6 +61,17 @@
             <button type="submit">Enviar</button>
         </form>
     </div>
+    
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block" align="center">
+        <strong>{{ $message }}</strong>
+    </div>
+    @elseif ($message = Session::get('warning')) 
+    <div class="alert alert-warning alert-block" align="center">
+	    <strong>{{ $message }}</strong>
+    </div>
+    @endif
+
     @if(isset($repos))
     <table align='center' border='1'>
         <tr>

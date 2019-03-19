@@ -35,7 +35,7 @@ class RelateController extends Controller
             ]
         );
 
-        return redirect('/relate');
+        return redirect('/relate')->with('success', 'Relação criada com sucesso!');
     }
 
     public function delete($id_user, $id_repos)
@@ -44,6 +44,6 @@ class RelateController extends Controller
             ->where('id_repos', '=', $id_repos)
             ->delete();
 
-        return redirect('/relate');
+        return redirect('/relate')->with('warning', 'Relação deletada com sucesso!');
     }
 }

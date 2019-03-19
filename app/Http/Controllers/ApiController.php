@@ -48,7 +48,7 @@ class ApiController extends Controller
                 ]
             );
 
-            return redirect('/api');
+            return redirect('/api')->with('success', 'Encontrado repositório!');
         } catch (\Exception $e) {
             print($e->getMessage());
         }
@@ -58,6 +58,6 @@ class ApiController extends Controller
     {
         Api::destroy($id);
 
-        return redirect('/api');
+        return redirect('/api')->with('warning', 'Deletado com sucesso!');
     }
 }

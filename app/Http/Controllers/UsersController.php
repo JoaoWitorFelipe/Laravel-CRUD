@@ -26,14 +26,18 @@ class UsersController extends Controller
                 'age' => $request['age']
             ]
         );
-        return redirect('/');
+        if ($request['id'] != null) {
+            return redirect('/')->with('success', 'Atualizado com sucesso!');
+        } else {
+            return redirect('/')->with('success', 'Criado com sucesso!');
+        }
     }
 
     public function delete($id)
     {
         User::destroy($id);
 
-        return redirect('/');
+        return redirect('/')->with('warning', 'Deletado com sucesso!');
     }
 
     public function update($id)
