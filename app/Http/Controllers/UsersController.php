@@ -40,10 +40,14 @@ class UsersController extends Controller
 
     public function delete($id)
     {
-        //Excluir um usuário por ID.
-        User::destroy($id);
+        try {
+            //Excluir um usuário por ID.
+            User::destroy($id);
 
-        return redirect('/')->with('warning', 'Deletado com sucesso!');
+            return redirect('/')->with('warning', 'Deletado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect('/')->with('info', 'Oops! Parece que esse usuário tem um cadsatro com algum repositório!');
+        }
     }
 
     public function update($id)

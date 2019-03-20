@@ -35,7 +35,7 @@ class ApiController extends Controller
                 'Content-Type: application/json',
             ),
         ]);
-        
+
         //Recebo o objeto em JSON.
         $response = curl_exec($curl);
         //Fecho a conexão com o CURL.
@@ -57,15 +57,20 @@ class ApiController extends Controller
             return redirect('/api')->with('success', 'Encontrado repositório!');
         } catch (\Exception $e) {
             //Caso de erro, exibir a mensagem em tela.
-            print($e->getMessage());
+            // console.log($e->getMessage());
+            return redirect('/api')->with('info', 'Repositório não encontrado! :(');
         }
     }
 
     public function delete($id)
     {
-        //Deletar repositório.
-        Api::destroy($id);
+        try {
+            //Deletar repositório.
+            Api::destroy($id);
 
-        return redirect('/api')->with('warning', 'Deletado com sucesso!');
+            return redirect('/api')->with('warning', 'Deletado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect('/api')->with('info', 'Oops! Parece que esse repositório tem um cadsatro com algum usuário!');
+        }
     }
 }

@@ -17,3 +17,6 @@ Route::get('/delete_repos/{id_repos}', 'ApiController@delete');
 Route::get('/relate', 'RelateController@show');
 Route::post('/relate', 'RelateController@create');
 Route::get('/delete_relate/{id_user}/{id_repos}', 'RelateController@delete');
+
+//Routes para exibir gráficos
+Route::get('/graphic', 'GraphicController@show');

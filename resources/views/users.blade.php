@@ -60,6 +60,7 @@
     <h1>Create | Read | Update | Delete</h1>
     <h1><a href="/api">API GitHub</a></h1>
     <h1><a href="/relate">Relate User with Repos of API</a></h1>
+    <h1><a href="/graphic">Graphic LavaCharts</a></h1>
     <div class="form-group">
         <form action="{{url('/')}}" method="POST">
             <input type="hidden" name="_token" required value="<?= csrf_token(); ?>">
@@ -78,6 +79,10 @@
     </div>
     @elseif ($message = Session::get('warning')) 
     <div class="alert alert-warning alert-block" align="center">
+	    <strong>{{ $message }}</strong>
+    </div>
+    @elseif ($message = Session::get('info')) 
+    <div class="alert alert-info alert-block" align="center">
 	    <strong>{{ $message }}</strong>
     </div>
     @endif

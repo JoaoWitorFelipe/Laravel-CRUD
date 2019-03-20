@@ -81,6 +81,10 @@
     <div class="alert alert-warning alert-block" align="center">
         <strong>{{ $message }}</strong>
     </div>
+    @elseif ($message = Session::get('info'))
+    <div class="alert alert-info alert-block" align="center">
+        <strong>{{ $message }}</strong>
+    </div>
     @endif
 
     @if(isset($repos))
