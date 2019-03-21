@@ -29,15 +29,18 @@ class RelateController extends Controller
 
     public function create(Request $request)
     {
-        //Cria a relação.
-        Relate::create(
-            [
-                'id_user' => $request['id_user'],
-                'id_repos' => $request['id_repos']
-            ]
-        );
-
-        return redirect('/relate')->with('success', 'Relação criada com sucesso!');
+        try {
+            //Cria a relação.
+            Relate::create(
+                [
+                    'id_user' => $request['id_user'],
+                    'id_repos' => $request['id_repos']
+                ]
+            );
+            return redirect('/relate')->with('success', 'Relação criada com sucesso!');
+        } catch (\Exception $e) {
+            return redirect('/relate')->with('info', 'Oops! Escolha uma opção! :P');
+        }
     }
 
     public function delete($id_user, $id_repos)

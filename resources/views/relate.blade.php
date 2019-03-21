@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <style>
         h1 {
             text-align: center;
@@ -62,8 +64,9 @@
 </head>
 
 <body>
-    <h1>Find API</h1>
-    <h1><a href="/">CRUD</a></h1>
+    <h1>Relate User with Repositorie</h1>
+    @extends('menu')
+    @section('content')
     <div class="form-group">
         <form action="{{url('/relate')}}" method="POST">
             <input type="hidden" name="_token" required value="<?php echo csrf_token(); ?>">
@@ -85,11 +88,18 @@
     </div>
 
     @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-block" align="center">
+    <div class="alert alert-success alert-block" id="close-div" align="center">
+        <button type="button" id="close" class="close" data-dismiss="alert">×</button>
         <strong>{{ $message }}</strong>
     </div>
     @elseif ($message = Session::get('warning'))
-    <div class="alert alert-warning alert-block" align="center">
+    <div class="alert alert-warning alert-block" id="close-div" align="center">
+        <button type="button" id="close" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+    @elseif ($message = Session::get('info'))
+    <div class="alert alert-info alert-block" id="close-div" align="center">
+        <button type="button" id="close" class="close" data-dismiss="alert">×</button>
         <strong>{{ $message }}</strong>
     </div>
     @endif
@@ -112,6 +122,15 @@
     </table>
     @endif
     </div>
+    @stop
 </body>
+
+<script>
+    $(document).ready(function() {
+        $("#close").click(function() {
+            $("#close-div").hide(1500);
+        });
+    });
+</script>
 
 </html> 
