@@ -23,8 +23,8 @@ class GraphicController extends Controller
             //Adicionando linhas para o gráfico, há apenas duas para, os maiores de idade e menores de idade
             $usersAge->addStringColumn('Age')
                 ->addNumberColumn('Age')
-                ->addRow(['Menores de 18 ', $countUserLessAge])
-                ->addRow(['Maiores de 18 ', $countUserMoreAge]);
+                ->addRow(['Maiores de 18 ', $countUserMoreAge])
+                ->addRow(['Menores de 18 ', $countUserLessAge]);
             //DonutChart um estilo de gráficos, mas há outros tipos e eu troco aqui, além de configurar título entre outros
             $lava->DonutChart(
                 'Age',

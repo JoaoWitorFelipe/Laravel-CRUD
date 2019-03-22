@@ -69,7 +69,7 @@
     @section('content')
     <div class="form-group">
         <form action="{{url('/repos')}}" method="POST">
-            <input type="hidden" name="_token" required value="<?php echo csrf_token(); ?>">
+            <input type="hidden" name="_token" required value="<?= csrf_token(); ?>">
             <input type="text" name="repos" id="repos" placeholder="Digite seu repositório">
 
             <button type="submit">Enviar</button>
@@ -122,7 +122,7 @@
 <script>
     $(document).ready(function() {
         $("#close").click(function() {
-            $("#close-div").hide(1500);
+            $("#close-div").slideUp("slow");
         });
     });
 </script>

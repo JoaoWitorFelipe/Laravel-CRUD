@@ -69,7 +69,7 @@
     @section('content')
     <div class="form-group">
         <form action="{{url('/relate')}}" method="POST">
-            <input type="hidden" name="_token" required value="<?php echo csrf_token(); ?>">
+            <input type="hidden" name="_token" required value="<?= csrf_token(); ?>">
             <select name="id_user" id="id_user">
                 <option>Default</option>
                 @foreach($users as $user)
@@ -128,7 +128,7 @@
 <script>
     $(document).ready(function() {
         $("#close").click(function() {
-            $("#close-div").hide(1500);
+            $("#close-div").slideUp("slow");
         });
     });
 </script>

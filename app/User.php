@@ -25,6 +25,4 @@ class User extends Authenticatable
     ];
 
     protected $table = "register_user";
-
-    public $timestamps = false;
 }

@@ -119,7 +119,7 @@
 <script>
 $(document).ready(function() {
     $("#close").click(function(){
-        $("#close-div").hide(1500);
+        $("#close-div").slideUp("slow");
     });
 });
 </script>
